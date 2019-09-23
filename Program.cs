@@ -10,68 +10,64 @@ namespace vaderstation
 
         static void addTempReading(int input)
         {
-            //throw new Exception("Not implemented yet");
+            throw new Exception("Not implemented yet");
 
         }
-
         static void listAllTemps(List<double> temprature)
         {
-            // throw new Exception("Not implemented yet");
 
+            Console.WriteLine();
             Console.WriteLine("Previous temprature readings: ");
             for (int i = 0; i < temprature.Count; i++)
             {
-
-                Console.WriteLine("[{0}] {1}", i, temprature[i]);
+                Console.WriteLine("[{0}] {1}", i+1, temprature[i]);
             }
 
+            Console.WriteLine("\nAverage temprature: ");
+            Console.WriteLine(calcAverageTemp(temprature).ToString("0.00"));
+            Console.ReadKey();
         }
-
-        static void calcAverageTemp()
+        static double calcAverageTemp(List<double> temprature)
         {
-            throw new Exception("Not implemented yet");
-
+            double sum = 0;
+            for (int i = 0; i < temprature.Count; i++){
+                sum += temprature[i];
+            }
+            sum = sum / temprature.Count;
+            
+            return sum;
         }
-
-        static void removeAllTemps()
+        static void removeAllTemps(List<double> temprature)
         {
-            throw new Exception("Not implemented yet");
-
+            temprature.Clear();
+            Console.WriteLine("\nHårdisken brann upp så tyvärr så sparades inget");
+            Console.ReadKey();
         }
 
         static void Main(string[] args)
         {
-            // var p = new Process();
-
-            // p.StartInfo = new ProcessStartInfo(@"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe", "dotnet run")
-            // {
-            //     UseShellExecute = false
-            // };
-
-            // p.Start();
-            Console.CursorVisible = false;
             string[] menuContent = { "Lägg till tempratur mätning", "Skriv ut alla tempraturer och medeltempraturer", "Ta bort tempraturmätning", "Avsluta" };
             var menu = new Menu(menuContent);
 
             string menuHeader = "Väderstationen";
-            menu = menu.GetMenu(menu, menuHeader);
 
             List<double> temp = new List<double>();
-
             bool exit = false;
 
             do
             {
+                menu = menu.GetMenu(menu, menuHeader);
+                Console.ReadKey(true);
+
                 switch (menu.SelectedIndex)
                 {
                     case 0:
                         // Lägg till temp
-                        string stringInput = Console.ReadLine();
                         double input;
                         try
                         {
-                            Console.WriteLine("Enter temprature reading: ");
-                            stringInput = Console.ReadLine();
+                            Console.WriteLine("\nEnter temprature reading: ");
+                            string stringInput = Console.ReadLine();
                             input = Convert.ToDouble(stringInput);
                             temp.Add(input);
                         }
@@ -79,7 +75,6 @@ namespace vaderstation
                         {
                             Console.WriteLine("You can only enter numbers");
                         }
-
                         break;
                     case 1:
                         // Skriv ut alla temp och medeltemp
@@ -87,23 +82,22 @@ namespace vaderstation
                         break;
                     case 2:
                         // Tabort alla temp 
-                        removeAllTemps();
+                        removeAllTemps(temp);
                         break;
                     case 3:
                         // Avsluta
-                            exit = true; 
+                        exit = true; 
                         return;
                     default:
                         break;
                 }
             }while(!exit);
+           
             Console.ReadKey();                                      // Paus i programmet så att användaren hinner läsa
-            Console.ForegroundColor = ConsoleColor.Gray;            // Byter tillbaka färg till gray
+
+            Console.ResetColor();
             Console.Clear();
 
-
         }
-
-
     }
 }

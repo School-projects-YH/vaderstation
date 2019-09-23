@@ -48,7 +48,6 @@ public class Menu
             }
         }
         while (!done);                                          // Om enter har tryckts gå ur meny loopen
-
         return menu;
     }
 }
@@ -61,8 +60,10 @@ public class ConsoleMenuPainter
     }
     public void Paint()
     {
+        Console.CursorVisible = false;
         for (int i = 0; i < menu.Items.Count; i++)
-        {
+        {   
+
             Console.SetCursorPosition(0, 3 + i);
 
             var color = menu.SelectedIndex == i ? ConsoleColor.Yellow : ConsoleColor.Gray;
