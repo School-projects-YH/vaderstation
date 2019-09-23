@@ -63,7 +63,6 @@ public class ConsoleMenuPainter
         Console.CursorVisible = false;
         for (int i = 0; i < menu.Items.Count; i++)
         {   
-
             Console.SetCursorPosition(0, 3 + i);
 
             var color = menu.SelectedIndex == i ? ConsoleColor.Yellow : ConsoleColor.Gray;

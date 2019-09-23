@@ -7,15 +7,12 @@ namespace vaderstation
 {
     class Program
     {
-
         static void addTempReading(int input)
         {
             throw new Exception("Not implemented yet");
-
         }
         static void listAllTemps(List<double> temprature)
         {
-
             Console.WriteLine();
             Console.WriteLine("Previous temprature readings: ");
             for (int i = 0; i < temprature.Count; i++)
@@ -43,7 +40,6 @@ namespace vaderstation
             Console.WriteLine("\nHårdisken brann upp så tyvärr så sparades inget");
             Console.ReadKey();
         }
-
         static void Main(string[] args)
         {
             string[] menuContent = { "Lägg till tempratur mätning", "Skriv ut alla tempraturer och medeltempraturer", "Ta bort tempraturmätning", "Avsluta" };
@@ -87,6 +83,7 @@ namespace vaderstation
                     case 3:
                         // Avsluta
                         exit = true; 
+                        Console.ResetColor();
                         return;
                     default:
                         break;
@@ -95,9 +92,7 @@ namespace vaderstation
            
             Console.ReadKey();                                      // Paus i programmet så att användaren hinner läsa
 
-            Console.ResetColor();
             Console.Clear();
-
         }
     }
 }
